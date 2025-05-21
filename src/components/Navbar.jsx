@@ -36,7 +36,7 @@ const Navbar = () => {
                 </div>
                 
                 <div className="navbar-end gap-3">
-                    <Link className="text-lg">Register</Link>
+                    <Link to='/register' className="text-lg">Register</Link>
                     <Link className="text-lg">Login</Link>
                 </div>
             </div>

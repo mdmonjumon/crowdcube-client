@@ -29,7 +29,7 @@ const NewCampaign = () => {
             donateAmount: donateAmount,
             deadline: deadline
         }
-        
+
 
         fetch('http://localhost:5000/addCampaign', {
             method: 'POST',
@@ -66,7 +66,7 @@ const NewCampaign = () => {
                                 quasi. In deleniti eaque aut repudiandae et a id nisi.
                             </p>
                         </div>
-                        <div className="card bg-base-100 w-full max-w-md shrink-0 shadow-2xl">
+                        <div className="card bg-base-100 w-full max-w-xl shrink-0 shadow-2xl">
                             <div className="card-body">
                                 <form onSubmit={handleAddNewCampaign}>
                                     <fieldset className="fieldset gap-5">
@@ -105,18 +105,19 @@ const NewCampaign = () => {
                                         {/* Minimum donation amount */}
                                         <div>
                                             <label className="font-medium text-lg">Donation Amount</label>
-                                            <input onChange={(e)=>setMinimumDonate(e.target.value)} name="donateAmount" type="number" className="input w-full" placeholder="Donate Amount" required />
-                                            {minimumDonate<100?  <span className="text-sm text-rose-500">Donate minimum 100 tk or more</span>:""} 
+                                            <input onChange={(e) => setMinimumDonate(e.target.value)} name="donateAmount" type="number" className="input w-full" placeholder="Donate Amount" required />
+                                            {minimumDonate < 100 ? <span className="text-sm text-rose-500">Donate minimum 100 tk or more</span> : ""}
                                         </div>
 
                                         {/* Deadline */}
-                                        <div>
-                                            <label className="font-medium text-lg">Deadline</label> <br />
-                                            <DatePicker required name="date" className="input"
+                                        <div className="fieldset gap-0">
+                                            <label className="font-medium text-lg">Deadline</label>
+                                            <DatePicker required name="date" className="input w-full"
                                                 selected={startDate}
                                                 onChange={(date) => setStartDate(date)}
                                             ></DatePicker>
                                         </div>
+
 
                                         {/* user email */}
                                         <div>
@@ -132,8 +133,16 @@ const NewCampaign = () => {
                                         </div>
 
 
-                                        <button disabled={minimumDonate<100? true:false} className="btn btn-neutral mt-4">Add</button>
+                                        <button disabled={minimumDonate < 100 ? true : false} className="btn btn-neutral mt-4">Add</button>
                                     </fieldset>
+
+                                    {/* <fieldset className="fieldset">
+                                        <label className="font-medium text-lg">Deadline</label> <br />
+                                        <DatePicker required name="date" className="input w-full"
+                                            selected={startDate}
+                                            onChange={(date) => setStartDate(date)}
+                                        ></DatePicker>
+                                    </fieldset> */}
                                 </form>
                             </div>
                         </div>

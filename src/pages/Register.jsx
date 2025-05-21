@@ -1,0 +1,58 @@
+import { Link } from "react-router-dom";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
+
+
+const Register = () => {
+    return (
+        <div>
+            <header>
+                <Navbar></Navbar>
+            </header>
+
+            <main className="max-w-[1440px] mx-auto my-10 px-3">
+                <section className="card bg-base-100 w-full mx-auto max-w-xl shrink-0 shadow-2xl p-10">
+                    <h3 className="text-center font-medium text-3xl my-10">Register Now!</h3>
+                    <form>
+                        <fieldset className="fieldset gap-5">
+
+                            {/*  name */}
+                            <div>
+                                <label className="font-medium text-lg">Your Name</label>
+                                <input name="name" type="text" className="input w-full" placeholder="Your Name" required />
+                            </div>
+
+                            {/* image */}
+                            <div>
+                                <label className="font-medium text-lg">Photo URL</label>
+                                <input name="photo" type="text" className="input w-full" placeholder="Photo url" required />
+                            </div>
+
+                            {/* email */}
+                            <div>
+                                <label className="font-medium text-lg">Register Email</label>
+                                <input name="email" type="email" className="input w-full" placeholder="email" required />
+                            </div>
+
+                            {/* password */}
+                            <div>
+                                <label className="font-medium text-lg">Password</label>
+                                <input name="password" type="email" className="input w-full" placeholder="Password" required />
+                            </div>
+
+                            <input className="btn btn-accent" type="button" value="Register" />
+                        </fieldset>
+                    </form>
+                </section>
+                <p className="text-center text-lg my-10">Already have an account? <Link className="text-rose-500">Login</Link></p>
+            </main>
+
+            <footer>
+                <Footer></Footer>
+            </footer>
+
+        </div>
+    );
+};
+
+export default Register;
