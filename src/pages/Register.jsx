@@ -7,9 +7,9 @@ import { AuthContext } from "../providers/AuthProvider";
 
 const Register = () => {
 
-    const {registerUser} = useContext(AuthContext)
+    const { registerUser } = useContext(AuthContext)
 
-    const handleRegister = (e)=>{
+    const handleRegister = (e) => {
         e.preventDefault();
         const form = e.target;
 
@@ -17,15 +17,31 @@ const Register = () => {
         const photo = form.photo.value;
         const email = form.email.value;
         const password = form.password.value;
+        const userDetails = {
+            name:name,
+            photo:photo,
+            email:email
+        }
 
         registerUser(email, password)
-        .then(result => {
-            console.log(result.user)
-        })
-        .catch(error =>{
-            console.log('error', error)
-        })
-
+            .then(result => {
+                if (result.user) {
+                    fetch('http://localhost:5000/users', {
+                        method:"POST",
+                        headers:{
+                            'content-type':'application/json'
+                        },
+                        body:JSON.stringify(userDetails)
+                    })
+                    .then(res=>res.json())
+                    .then(result=>{
+                        console.log(result);
+                    })
+                }
+            })
+            .catch(error => {
+                console.log('error', error)
+            })
     }
 
     return (
@@ -68,7 +84,7 @@ const Register = () => {
                         </fieldset>
                     </form>
                 </section>
-                <p className="text-center text-lg my-10">Already have an account? <Link className="text-rose-500">Login</Link></p>
+                <p className="text-center text-lg my-10">Already have an account? <Link to='/login' className="text-rose-500">Login</Link></p>
             </main>
 
             <footer>
