@@ -1,9 +1,33 @@
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import { useContext } from "react";
+import { AuthContext } from "../providers/AuthProvider";
 
 
 const Register = () => {
+
+    const {registerUser} = useContext(AuthContext)
+
+    const handleRegister = (e)=>{
+        e.preventDefault();
+        const form = e.target;
+
+        const name = form.name.value;
+        const photo = form.photo.value;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        registerUser(email, password)
+        .then(result => {
+            console.log(result.user)
+        })
+        .catch(error =>{
+            console.log('error', error)
+        })
+
+    }
+
     return (
         <div>
             <header>
@@ -13,7 +37,7 @@ const Register = () => {
             <main className="max-w-[1440px] mx-auto my-10 px-3">
                 <section className="card bg-base-100 w-full mx-auto max-w-xl shrink-0 shadow-2xl p-10">
                     <h3 className="text-center font-medium text-3xl my-10">Register Now!</h3>
-                    <form>
+                    <form onSubmit={handleRegister}>
                         <fieldset className="fieldset gap-5">
 
                             {/*  name */}
@@ -37,10 +61,10 @@ const Register = () => {
                             {/* password */}
                             <div>
                                 <label className="font-medium text-lg">Password</label>
-                                <input name="password" type="email" className="input w-full" placeholder="Password" required />
+                                <input name="password" type="password" className="input w-full" placeholder="Password" required />
                             </div>
 
-                            <input className="btn btn-accent" type="button" value="Register" />
+                            <input className="btn btn-accent" type="submit" value="Register" />
                         </fieldset>
                     </form>
                 </section>
