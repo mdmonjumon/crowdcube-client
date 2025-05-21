@@ -8,9 +8,9 @@ const Navbar = () => {
     const [menu, setMenu] = useState(false)
 
     const links = <>
-        <NavLink className='text-lg'>Home</NavLink>
+        <NavLink to='/' className='text-lg'>Home</NavLink>
         <NavLink className='text-lg'>All Campaign</NavLink>
-        <NavLink className='text-lg'>Add New Campaign</NavLink>
+        <NavLink to='/addCampaign' className='text-lg'>Add New Campaign</NavLink>
         <NavLink className='text-lg'>My Campaign</NavLink>
         <NavLink className='text-lg'>My Donations</NavLink>
 
@@ -51,5 +51,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-// menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow before:min-h-screen"
