@@ -1,11 +1,13 @@
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Swal from "sweetalert2";
+import { AuthContext } from "../providers/AuthProvider";
 
 const NewCampaign = () => {
 
+    const {user} = useContext(AuthContext)
     const [startDate, setStartDate] = useState()
     const [minimumDonate, setMinimumDonate] = useState()
 
@@ -47,6 +49,8 @@ const NewCampaign = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
+                    form.reset()
+                    setStartDate()
                 }
             })
 
@@ -122,14 +126,14 @@ const NewCampaign = () => {
                                         {/* user email */}
                                         <div>
                                             <label className="font-medium text-lg">User Email</label>
-                                            <input name="userEmail" type="email" className="input w-full" required />
+                                            <input name="userEmail" type="email" className="input w-full" value={user.email} required />
                                         </div>
 
 
                                         {/* user name */}
                                         <div>
                                             <label className="font-medium text-lg">User Name</label>
-                                            <input name="userName" type="text" className="input w-full" required />
+                                            <input name="userName" type="text" className="input w-full" value={user.displayName} required />
                                         </div>
 
 

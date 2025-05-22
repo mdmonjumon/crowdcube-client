@@ -4,31 +4,32 @@ import AddCampaign from "../pages/AddCampaign";
 import RunningCampaign from "../components/RunningCampaign";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
+import PrivateRoute from "../providers/PrivateRoute";
 
 
 const router = createBrowserRouter([
     {
-        path:'/',
-        element:<Home></Home>,
-        children:[
+        path: '/',
+        element: <Home></Home>,
+        children: [
             {
-                path:'/',
-                element:<RunningCampaign></RunningCampaign>,
-                loader: ()=> fetch('http://localhost:5000/allCampaign')
+                path: '/',
+                element: <RunningCampaign></RunningCampaign>,
+                loader: () => fetch('http://localhost:5000/allCampaign')
             }
         ]
     },
 
     {
-        path:'/addCampaign',
-        element:<AddCampaign></AddCampaign>
+        path: '/addCampaign',
+        element: <PrivateRoute><AddCampaign></AddCampaign></PrivateRoute>
     },
     {
-        path:'/register',
+        path: '/register',
         element: <Register></Register>
     },
     {
-        path:'/login',
+        path: '/login',
         element: <Login></Login>
     },
 ])

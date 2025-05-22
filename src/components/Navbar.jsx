@@ -9,10 +9,7 @@ const Navbar = () => {
     const [menu, setMenu] = useState(false)
     const [hover, setHover] = useState(false)
     const { user, signOutUser } = useContext(AuthContext)
-
-    console.log(hover)
-
-
+    
     const links = <>
         <NavLink to='/' className='text-lg'>Home</NavLink>
         <NavLink className='text-lg'>All Campaign</NavLink>
@@ -66,7 +63,7 @@ const Navbar = () => {
                             :
                             <>
                                 <Link to='/register' className="text-lg">Register</Link>
-                                <Link className="text-lg">Login</Link>
+                                <Link to='/login' className="text-lg">Login</Link>
                             </>
                     }
                 </div>

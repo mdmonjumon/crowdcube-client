@@ -1,15 +1,21 @@
 import React, { useContext } from 'react';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../providers/AuthProvider';
+import Swal from 'sweetalert2';
 
 const Login = () => {
 
-    const {userSignIn}= useContext(AuthContext)
+    const { userSignIn } = useContext(AuthContext)
+
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    console.log(location)
 
 
-    const handleLogIn = (e)=>{
+    const handleLogIn = (e) => {
         e.preventDefault();
         const form = e.target;
 
@@ -17,12 +23,33 @@ const Login = () => {
         const password = form.password.value;
 
         userSignIn(email, password)
-        .then(result=>{
-            console.log(result.user)
-        })
-        .catch(error=>{
-            console.log('error', error)
-        })
+            .then(result => {
+                if (result.user.email) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Signin successful",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+                    if(location.state){
+                        navigate(location.state)
+                    }
+                    else{
+                        navigate('/')
+                    }
+                    
+                }
+
+            })
+            .catch(() => {
+                Swal.fire({
+                    icon: "error",
+                    title: "Try again with valid email and password",
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            })
 
     }
 
