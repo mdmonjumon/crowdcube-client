@@ -26,14 +26,14 @@ const NewCampaign = () => {
 
 
         const campaignInfo = {
-            photo: photo,
-            title: title,
-            campaignType: campaignType,
-            description: description,
-            donateAmount: donateAmount,
+            photo,
+            title,
+            campaignType,
+            description,
+            donateAmount,
             deadline: new Date(deadline).toISOString(),
-            userEmail:userEmail,
-            userName:userName
+            userEmail,
+            userName
         }
 
 

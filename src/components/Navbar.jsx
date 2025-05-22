@@ -14,8 +14,8 @@ const Navbar = () => {
         <NavLink to='/' className='text-lg'>Home</NavLink>
         <NavLink to='/campaigns' className='text-lg'>All Campaign</NavLink>
         <NavLink to='/addCampaign' className='text-lg'>Add New Campaign</NavLink>
-        <NavLink className='text-lg'>My Campaign</NavLink>
-        <NavLink className='text-lg'>My Donations</NavLink>
+        <NavLink to='/myCampaign' className='text-lg'>My Campaign</NavLink>
+        <NavLink to='/myDonations' className='text-lg'>My Donations</NavLink>
 
     </>
 
