@@ -20,6 +20,8 @@ const NewCampaign = () => {
         const description = form.description.value;
         const donateAmount = form.donateAmount.value;
         const deadline = form.date.value;
+        const userEmail = form.userEmail.value;
+        const userName = form.userName.value;
 
 
 
@@ -29,7 +31,9 @@ const NewCampaign = () => {
             campaignType: campaignType,
             description: description,
             donateAmount: donateAmount,
-            deadline: deadline
+            deadline: new Date(deadline).toISOString(),
+            userEmail:userEmail,
+            userName:userName
         }
 
 
@@ -74,17 +78,20 @@ const NewCampaign = () => {
                             <div className="card-body">
                                 <form onSubmit={handleAddNewCampaign}>
                                     <fieldset className="fieldset gap-5">
-                                        {/* image */}
-                                        <div>
-                                            <label className="font-medium text-lg">Photo URL</label>
-                                            <input name="photo" type="text" className="input w-full" placeholder="Photo url" required />
-                                        </div>
 
                                         {/* title */}
                                         <div>
                                             <label className="font-medium text-lg">Campaign Title</label>
                                             <input name="title" type="text" className="input w-full" placeholder="Title" required />
                                         </div>
+                                        
+
+                                        {/* image */}
+                                        <div>
+                                            <label className="font-medium text-lg">Photo URL</label>
+                                            <input name="photo" type="text" className="input w-full" placeholder="Photo url" required />
+                                        </div>
+                                        
 
                                         {/* Campaign type */}
                                         <div>

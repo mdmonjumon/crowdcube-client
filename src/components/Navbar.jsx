@@ -9,10 +9,10 @@ const Navbar = () => {
     const [menu, setMenu] = useState(false)
     const [hover, setHover] = useState(false)
     const { user, signOutUser } = useContext(AuthContext)
-    
+
     const links = <>
         <NavLink to='/' className='text-lg'>Home</NavLink>
-        <NavLink className='text-lg'>All Campaign</NavLink>
+        <NavLink to='/campaigns' className='text-lg'>All Campaign</NavLink>
         <NavLink to='/addCampaign' className='text-lg'>Add New Campaign</NavLink>
         <NavLink className='text-lg'>My Campaign</NavLink>
         <NavLink className='text-lg'>My Donations</NavLink>
@@ -35,7 +35,7 @@ const Navbar = () => {
                         <ul
 
                             tabIndex={0}
-                            className={`lg:hidden absolute  flex flex-col gap-3 w-40 ${menu ? 'left-0 bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow min-h-[calc(100vh-90px)]' : '-left-60'}`}>
+                            className={`lg:hidden absolute  flex flex-col gap-3 w-40 ${menu ? 'left-0 bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow min-h-[calc(100vh-90px)] z-50' : '-left-60'}`}>
                             {links}
                         </ul>
                     </div>
