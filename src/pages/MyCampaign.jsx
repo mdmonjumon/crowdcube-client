@@ -92,7 +92,7 @@ const MyCampaign = () => {
                                             <td>{campaign.userEmail}</td>
                                             <td className="flex items-center">
                                                 {/* update button */}
-                                                <Link to='updateCampaign/'> <FaEdit className="size-7 mr-10" /></Link>
+                                                <Link to={`/updateCampaign/${campaign._id}`}> <FaEdit className="size-7 mr-10" /></Link>
 
                                                 {/* delete button */}
                                                 <button onClick={() => handleDeleteCampaign(campaign._id)}> <TiDeleteOutline className="size-8" /> </button>
