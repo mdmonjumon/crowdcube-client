@@ -1,17 +1,28 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../providers/AuthProvider';
 
 const Login = () => {
+
+    const {userSignIn}= useContext(AuthContext)
 
 
     const handleLogIn = (e)=>{
         e.preventDefault();
         const form = e.target;
 
-        const name = form.name.value;
+        const email = form.email.value;
         const password = form.password.value;
+
+        userSignIn(email, password)
+        .then(result=>{
+            console.log(result.user)
+        })
+        .catch(error=>{
+            console.log('error', error)
+        })
 
     }
 

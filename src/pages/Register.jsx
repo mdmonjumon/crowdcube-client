@@ -7,7 +7,7 @@ import { AuthContext } from "../providers/AuthProvider";
 
 const Register = () => {
 
-    const { registerUser } = useContext(AuthContext)
+    const { registerUser, updateUserProfile } = useContext(AuthContext)
 
     const handleRegister = (e) => {
         e.preventDefault();
@@ -23,9 +23,15 @@ const Register = () => {
             email:email
         }
 
+        const userInfo ={
+            displayName:name,
+            photoURL:photo
+        }
+
         registerUser(email, password)
             .then(result => {
                 if (result.user) {
+                    updateUserProfile(userInfo)
                     fetch('http://localhost:5000/users', {
                         method:"POST",
                         headers:{

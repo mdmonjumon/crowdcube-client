@@ -7,7 +7,11 @@ import { AuthContext } from "../providers/AuthProvider";
 const Navbar = () => {
 
     const [menu, setMenu] = useState(false)
+    const [hover, setHover] = useState(false)
     const { user, signOutUser } = useContext(AuthContext)
+
+    console.log(hover)
+
 
     const links = <>
         <NavLink to='/' className='text-lg'>Home</NavLink>
@@ -18,9 +22,9 @@ const Navbar = () => {
 
     </>
 
-    const handleSignOut = () =>{
+    const handleSignOut = () => {
         signOutUser()
-        .then(()=>{})
+            .then(() => { })
     }
 
     return (
@@ -42,10 +46,23 @@ const Navbar = () => {
                     <img className="h-20 w-52 size-full object-cover" src={logo} alt="logo" />
                 </div>
 
-                <div className="navbar-end gap-3">
+                <div className="navbar-end gap-3 relative">
                     {
                         user ?
-                            <button onClick={handleSignOut} className="btn btn-ghost">Logout</button>
+                            <>
+                                <img onMouseLeave={() => setHover(false)} onMouseEnter={() => setHover(true)} className="h-14 w-14 size-full rounded-full" src={user.photoURL} alt={user.displayName} />
+
+
+                                {
+                                    hover &&
+                                    <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} className="flex flex-col gap-3 absolute top-12 right-0 bg-base-100 p-5 z-50 min-w-max">
+                                        <span>{user.displayName}</span>
+                                        <button onClick={handleSignOut} className="btn btn-accent">Logout</button>
+                                    </div>
+                                }
+
+
+                            </>
                             :
                             <>
                                 <Link to='/register' className="text-lg">Register</Link>
