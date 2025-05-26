@@ -4,6 +4,8 @@ import Footer from '../components/Footer';
 import Banner from '../components/Banner';
 import RunningCampaign from '../components/RunningCampaign';
 import { Outlet } from 'react-router-dom';
+import Invest from '../components/Invest';
+import FAQ from '../components/FAQ';
 
 const Home = () => {
     return (
@@ -23,6 +25,15 @@ const Home = () => {
                 <Outlet></Outlet>
             </section>
 
+            {/* invest section */}
+            <section>
+                <Invest></Invest>
+            </section>
+
+            {/* FAQs section */}
+            <section>
+                <FAQ></FAQ>
+            </section>
 
             {/* footer */}
             <footer>
