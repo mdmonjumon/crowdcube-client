@@ -4,10 +4,11 @@ import Navbar from '../components/Navbar';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../providers/AuthProvider';
 import Swal from 'sweetalert2';
+import { FaGoogle } from 'react-icons/fa6';
 
 const Login = () => {
 
-    const { userSignIn } = useContext(AuthContext)
+    const { userSignIn, signInWithGoogle } = useContext(AuthContext)
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -32,13 +33,13 @@ const Login = () => {
                         timer: 1500
                     });
 
-                    if(location.state){
+                    if (location.state) {
                         navigate(location.state)
                     }
-                    else{
+                    else {
                         navigate('/')
                     }
-                    
+
                 }
 
             })
@@ -51,6 +52,30 @@ const Login = () => {
                 });
             })
 
+    }
+
+
+    const handleSignInWithGoogle = () => {
+        signInWithGoogle()
+            .then(result => {
+                if(result.user.email){
+                    if(location.state){
+                        navigate(location.state)
+                    }
+                    else{
+                        navigate('/')
+                    
+                    }
+                }
+            })
+            .catch(() => {
+                Swal.fire({
+                    icon: "error",
+                    title: "Try again",
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            })
     }
 
 
@@ -86,6 +111,10 @@ const Login = () => {
                     </form>
                 </section>
                 <p className="text-center text-lg my-10">Don't have an account? <Link to='/register' className="text-rose-500">Register</Link></p>
+
+                <div className='w-fit mx-auto'>
+                    <button onClick={handleSignInWithGoogle} className='btn btn-accent text-lg'><FaGoogle color='#4285F4' /> Login with Google</button>
+                </div>
             </main>
 
             <footer>
