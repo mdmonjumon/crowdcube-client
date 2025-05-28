@@ -10,6 +10,7 @@ import FAQ from '../components/FAQ';
 const Home = () => {
     return (
         <div>
+
             {/* navbar */}
             <header>
                 <Navbar></Navbar>

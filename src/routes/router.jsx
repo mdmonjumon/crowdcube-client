@@ -9,12 +9,15 @@ import AllCampaigns from "../pages/AllCampaigns";
 import DetailsPage from "../pages/DetailsPage";
 import MyCampaign from "../pages/MyCampaign";
 import UpdateCampaign from "../pages/UpdateCampaign";
+import MyDonations from "../pages/MyDonations";
+import Error from "../pages/Error";
 
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <Home></Home>,
+        errorElement:<Error></Error>,
         children: [
             {
                 path: '/',
@@ -30,10 +33,21 @@ const router = createBrowserRouter([
         loader: () => fetch('http://localhost:5000/allCampaign')
     },
     {
+        path: '/addCampaign',
+        element: <PrivateRoute><AddCampaign></AddCampaign></PrivateRoute>
+    },
+    {
         path: '/myCampaign',
         element: <PrivateRoute><MyCampaign></MyCampaign></PrivateRoute>,
         loader: () => fetch('http://localhost:5000/allCampaign')
     },
+
+    {
+        path:'/myDonations',
+        element:<PrivateRoute><MyDonations></MyDonations></PrivateRoute>,
+        loader: () => fetch('http://localhost:5000/donations')
+    },
+
     {
         path: '/updateCampaign/:id',
         element: <PrivateRoute><UpdateCampaign></UpdateCampaign></PrivateRoute>,
@@ -46,10 +60,7 @@ const router = createBrowserRouter([
         loader: ({ params }) => fetch(`http://localhost:5000/campaign/${params.id}`)
     },
 
-    {
-        path: '/addCampaign',
-        element: <PrivateRoute><AddCampaign></AddCampaign></PrivateRoute>
-    },
+    
 
     {
         path: '/register',

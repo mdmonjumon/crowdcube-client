@@ -1,10 +1,13 @@
 import moment from "moment";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Card = ({campaign}) => {
     const {_id, photo, title, campaignType, donateAmount, deadline}= campaign;
 
     const date = moment(deadline).format("DD MMMM YYYY");
+
+    const location = useLocation()
+    
     
     return (
         <div>
@@ -21,7 +24,9 @@ const Card = ({campaign}) => {
                     <p> <span className='text-lg font-medium'>Donate Amount:</span> <span className='text-lg'>{donateAmount}</span></p>
                     
                     <div className="card-actions justify-start">
-                        <Link to={`/campaign/${_id}`} className="btn btn-primary">See More</Link>
+                        {
+                            location.pathname === '/myDonations'? '': <Link to={`/campaign/${_id}`} className="btn btn-primary">See More</Link>
+                        }
                     </div>
                 </div>
             </div>

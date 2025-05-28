@@ -1,13 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 
 const Register = () => {
 
-    const { registerUser, updateUserProfile } = useContext(AuthContext)
+    const { registerUser, updateUserProfile, error, setError } = useContext(AuthContext)
+    const navigate = useNavigate()
+    const passwordRegex = /(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+
 
     const handleRegister = (e) => {
         e.preventDefault();
@@ -18,36 +22,56 @@ const Register = () => {
         const email = form.email.value;
         const password = form.password.value;
         const userDetails = {
-            name:name,
-            photo:photo,
-            email:email
+            name: name,
+            photo: photo,
+            email: email
         }
 
-        const userInfo ={
-            displayName:name,
-            photoURL:photo
+        if (!passwordRegex.test(password)) {
+            setError('Password must contained at least 6 character with an Upper and Lowercase letter');
+            return;
+        }
+
+        const userInfo = {
+            displayName: name,
+            photoURL: photo
         }
 
         registerUser(email, password)
             .then(result => {
                 if (result.user) {
                     updateUserProfile(userInfo)
+                    setError('')
+
+                    Swal.fire({
+                        icon: "success",
+                        title: "Registration success",
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+
                     fetch('http://localhost:5000/users', {
-                        method:"POST",
-                        headers:{
-                            'content-type':'application/json'
+                        method: "POST",
+                        headers: {
+                            'content-type': 'application/json'
                         },
-                        body:JSON.stringify(userDetails)
+                        body: JSON.stringify(userDetails)
                     })
-                    .then(res=>res.json())
-                    .then(result=>{
-                        console.log(result);
-                    })
+                        .then(res => res.json())
+
+                    navigate('/');
                 }
             })
-            .catch(error => {
-                console.log('error', error)
+            .catch(() => {
+                Swal.fire({
+                    icon: "error",
+                    title: 'The provided email is already in use by an existing user.',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
             })
+
+
     }
 
     return (
@@ -84,6 +108,7 @@ const Register = () => {
                             <div>
                                 <label className="font-medium text-lg">Password</label>
                                 <input name="password" type="password" className="input w-full" placeholder="Password" required />
+                                <span className="text-error text-sm">{error}</span>
                             </div>
 
                             <input className="btn btn-accent" type="submit" value="Register" />

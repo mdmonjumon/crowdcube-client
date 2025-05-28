@@ -70,8 +70,7 @@ const NewCampaign = () => {
                         <div className="text-center lg:text-left">
                             <h1 className="text-5xl font-bold text-center">Add New Campaign</h1>
                             <p className="py-6">
-                                Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-                                quasi. In deleniti eaque aut repudiandae et a id nisi.
+                                We allow people to fund the businesses they most believe in and would like to see succeed. When companies run a crowdfunding campaign, they not only raise money but also build up a community of co-owners and advocates—their very own crowd—that really believes in what they do!
                             </p>
                         </div>
                         <div className="card bg-base-100 w-full max-w-xl shrink-0 shadow-2xl">
