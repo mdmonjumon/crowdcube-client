@@ -6,6 +6,7 @@ import { Fade } from "react-awesome-reveal";
 
 
 
+
 const RunningCampaign = () => {
 
     const loadedCampaigns = useLoaderData()
