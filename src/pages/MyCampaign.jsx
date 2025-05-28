@@ -35,7 +35,7 @@ const MyCampaign = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/campaign/${id}`, {
+                fetch(`https://crowdcube-server-ten.vercel.app/campaign/${id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())

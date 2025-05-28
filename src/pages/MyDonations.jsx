@@ -9,20 +9,12 @@ import Card from "../components/Card";
 const MyDonations = () => {
     const loadedDonations = useLoaderData()
     const { user } = useContext(AuthContext)
-    console.log(user)
+
     const [singleUserDonations, setSingleUserDonations] = useState()
 
     useEffect(() => {
         setSingleUserDonations(loadedDonations.filter(donation => donation.donorEmail === user?.email))
     }, [loadedDonations, user])
-
-    console.log(singleUserDonations)
-
-
-
-
-
-
 
     return (
         <div>

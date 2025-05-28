@@ -50,7 +50,7 @@ const Register = () => {
                         timer: 2000
                     });
 
-                    fetch('http://localhost:5000/users', {
+                    fetch('https://crowdcube-server-ten.vercel.app/users', {
                         method: "POST",
                         headers: {
                             'content-type': 'application/json'

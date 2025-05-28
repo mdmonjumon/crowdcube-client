@@ -42,7 +42,7 @@ const DetailsPage = () => {
         }
 
 
-        fetch('http://localhost:5000/donates', {
+        fetch('https://crowdcube-server-ten.vercel.app/donates', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
