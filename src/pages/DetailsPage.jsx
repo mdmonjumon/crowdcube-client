@@ -28,8 +28,19 @@ const DetailsPage = () => {
             deadline,
             campaignType,
             donorEmail: user.email,
-            donorName:user.displayName
+            donorName: user.displayName
         }
+
+        if (deadline < new Date().toISOString()) {
+            Swal.fire({
+                icon: "error",
+                title: "Deadline over. You can't donate",
+                showConfirmButton: false,
+                timer: 1500
+            });
+            return;
+        }
+
 
         fetch('http://localhost:5000/donates', {
             method: 'POST',

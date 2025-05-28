@@ -1,4 +1,4 @@
-import { Link, useLoaderData, useLocation } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import moment from "moment";
