@@ -1,12 +1,41 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Project Title :- Crowdcube: A Crowd Funding Application
 
-Currently, two official plugins are available:
+Live Website Link: https://crowdcube-67fcb.web.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## Purpose:
+This web application is created to own shares in some of most exciting high-growth, private businesses from just 100 Taka, investing alongside and on the same terms as institutional investors.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Key Features:
+- User Registration and Login with Email and Password.
+
+- Google Account Login with one-click authentication.
+
+- Simple Donation Process after login.
+- The user can add a campaign after logging in, view all campaigns and their donation data, and sort their donations by amount from low to high.
+
+- Responsive UI with Tailwind CSS and DaisyUI components.
+
+- Real-Time Notifications using React Toastify.
+
+- Routing and Navigation with React Router.
+
+- Secure Authentication powered by Google Firebase.
+
+
+## Technologies & NPM Packages Used:
+- React
+
+- React Router DOM
+
+- Tailwind CSS
+
+- DaisyUI
+
+- React Icons
+
+- React Toastify
+
+- Firebase Authentication
+

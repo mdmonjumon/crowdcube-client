@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../providers/AuthProvider';
 import Swal from 'sweetalert2';
 import { FaGoogle } from 'react-icons/fa6';
+import { GoEye, GoEyeClosed } from 'react-icons/go';
 
 const Login = () => {
 
@@ -12,6 +13,7 @@ const Login = () => {
 
     const location = useLocation();
     const navigate = useNavigate();
+    const [showPassword, setShowPassword] = useState(false)
 
 
     const handleLogIn = (e) => {
@@ -56,13 +58,13 @@ const Login = () => {
     const handleSignInWithGoogle = () => {
         signInWithGoogle()
             .then(result => {
-                if(result.user.email){
-                    if(location.state){
+                if (result.user.email) {
+                    if (location.state) {
                         navigate(location.state)
                     }
-                    else{
+                    else {
                         navigate('/')
-                    
+
                     }
                 }
             })
@@ -95,14 +97,21 @@ const Login = () => {
                             </div>
 
                             {/* password */}
-                            <div>
+                            <div className='relative'>
                                 <label className="font-medium text-lg">Password</label>
-                                <input name="password" type="password" className="input w-full" placeholder="Password" required />
+                                <input name="password" type={`${showPassword? 'text':'password'}`} className="input w-full" placeholder="Password" required />
+
+                                <div onClick={() => setShowPassword(!showPassword)} className="absolute right-5 top-9 z-10 cursor-pointer">
+
+                                    {
+                                        showPassword ? <GoEyeClosed size='25' /> : <GoEye size='25' />
+                                    }
+
+                                </div>
+
                             </div>
 
-                            <div>
-                                <p className='text-sm underline cursor-pointer'>Forgot Password?</p>
-                            </div>
+
 
                             <input className="btn btn-accent" type="submit" value="Login" />
                         </fieldset>
