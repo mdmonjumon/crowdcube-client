@@ -1,9 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
+import { GoEyeClosed, GoEye } from "react-icons/go";
 
 
 const Register = () => {
@@ -11,6 +12,7 @@ const Register = () => {
     const { registerUser, updateUserProfile, error, setError } = useContext(AuthContext)
     const navigate = useNavigate()
     const passwordRegex = /(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+    const [showPassword, setShowPassword] = useState(false)
 
 
     const handleRegister = (e) => {
@@ -105,10 +107,17 @@ const Register = () => {
                             </div>
 
                             {/* password */}
-                            <div>
+                            <div className="relative">
                                 <label className="font-medium text-lg">Password</label>
-                                <input name="password" type="password" className="input w-full" placeholder="Password" required />
+                                <input name="password" type={`${showPassword? 'text':'password'}`} className="input w-full" placeholder="Password" required />
                                 <span className="text-error text-sm">{error}</span>
+                                <div onClick={() => setShowPassword(!showPassword)} className="absolute right-5 top-9 z-10 cursor-pointer">
+
+                                    {
+                                        showPassword ? <GoEyeClosed size='25'/> : <GoEye size='25' />
+                                    }
+
+                                </div>
                             </div>
 
                             <input className="btn btn-accent" type="submit" value="Register" />
